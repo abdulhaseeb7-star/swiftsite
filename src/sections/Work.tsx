@@ -210,11 +210,12 @@ export default function Work() {
 
       {/* Filter tabs */}
       <div style={{
-        padding: "0 4rem",
+        padding: "0 1.5rem",
         borderBottom: "1px solid rgba(0,0,0,0.08)",
         marginBottom: "0",
+        overflowX: "auto",
       }}>
-        <div style={{ display: "flex", gap: "2.5rem" }}>
+        <div style={{ display: "flex", gap: "1.5rem", minWidth: "max-content" }}>
           {filters.map((filter) => (
             <button
               key={filter}

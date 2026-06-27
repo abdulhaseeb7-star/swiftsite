@@ -58,3 +58,8 @@ body {
     grid-template-columns: 1fr !important;
   }
 }
+@media (max-width: 768px) {
+  #work .project-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
