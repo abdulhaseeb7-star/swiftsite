@@ -17,13 +17,41 @@ export default function About() {
       position: "relative",
       overflow: "hidden",
     }}>
+      <style>{`
+        .about-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          min-height: 600px;
+        }
+        .about-center {
+          display: block;
+        }
+        .about-right {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .about-grid {
+            grid-template-columns: 1fr;
+          }
+          .about-center {
+            display: none;
+          }
+          .about-right {
+            display: none;
+          }
+        }
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: 768px) {
+          .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+      `}</style>
 
-      {/* Main content */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
-        minHeight: "600px",
-      }}>
+      <div className="about-grid">
 
         {/* Left — Text */}
         <motion.div
@@ -48,7 +76,6 @@ export default function About() {
             width: "1px",
             backgroundColor: "rgba(0,0,0,0.12)",
           }} />
-          {/* Top arrow on line */}
           <div style={{
             position: "absolute",
             left: "calc(2.5rem - 3px)",
@@ -125,6 +152,7 @@ export default function About() {
 
         {/* Center — Tall photo */}
         <motion.div
+          className="about-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -137,12 +165,11 @@ export default function About() {
           <div style={{
             width: "100%",
             height: "100%",
-            backgroundImage: `url('https://images.unsplash.com/photo-1567016432779-094069958ea5?w=600&q=80')`,
+            backgroundImage: `url('/about.jpg')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             borderRadius: "2px",
           }} />
-          {/* Bottom fade */}
           <div style={{
             position: "absolute",
             bottom: "3rem",
@@ -151,7 +178,6 @@ export default function About() {
             height: "120px",
             background: "linear-gradient(to bottom, transparent, #F0EDE8)",
           }} />
-          {/* Top fade */}
           <div style={{
             position: "absolute",
             top: "3rem",
@@ -164,6 +190,7 @@ export default function About() {
 
         {/* Right — SS watermark + taglines */}
         <motion.div
+          className="about-right"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -176,7 +203,6 @@ export default function About() {
             position: "relative",
           }}
         >
-          {/* SS Watermark */}
           <div style={{ opacity: 0.15, marginBottom: "3rem" }}>
             <img
               src="/logo.png"
@@ -189,7 +215,6 @@ export default function About() {
             />
           </div>
 
-          {/* Taglines */}
           {["Thoughtful Design.", "Clean Development.", "Measurable Results."].map((line, i) => (
             <motion.p
               key={line}
@@ -214,10 +239,8 @@ export default function About() {
       </div>
 
       {/* Stats bar */}
-      <div style={{
+      <div className="stats-grid" style={{
         backgroundColor: "#E8E4DC",
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
         borderTop: "1px solid rgba(0,0,0,0.08)",
       }}>
         {stats.map((stat, i) => (
@@ -233,7 +256,8 @@ export default function About() {
               flexDirection: "column",
               alignItems: "center",
               gap: "0.75rem",
-              borderRight: i < 3 ? "1px solid rgba(0,0,0,0.08)" : "none",
+              borderRight: i % 2 === 0 ? "1px solid rgba(0,0,0,0.08)" : "none",
+              borderBottom: i < 2 ? "1px solid rgba(0,0,0,0.08)" : "none",
             }}
           >
             <div style={{
@@ -261,6 +285,7 @@ export default function About() {
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               color: "#888",
+              textAlign: "center",
             }}>
               {stat.label}
             </p>

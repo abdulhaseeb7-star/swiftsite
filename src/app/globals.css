@@ -32,3 +32,29 @@ body {
   background: #1a1a1a;
   border-radius: 2px;
 }
+@media (max-width: 768px) {
+  section {
+    padding: 4rem 1.5rem !important;
+  }
+}@media (max-width: 768px) {
+
+  /* Pricing */
+  #pricing > div:last-of-type {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* About */
+  #about > div:first-of-type {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* About stats */
+  #about > div:nth-of-type(2) {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Contact */
+  #contact > div:first-of-type {
+    grid-template-columns: 1fr !important;
+  }
+}

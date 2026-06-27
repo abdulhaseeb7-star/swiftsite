@@ -35,9 +35,6 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         backgroundColor: "transparent",
-        backdropFilter: "none",
-        WebkitBackdropFilter: "none",
-        borderBottom: "none",
         padding: "0 2.5rem",
         height: "60px",
         display: "flex",
@@ -45,7 +42,6 @@ export default function Navbar() {
         justifyContent: "space-between",
       }}
     >
-      {/* Logo */}
       <motion.a href="#" whileHover={{ scale: 1.03 }}>
         <img
           src="/logo.png"
@@ -54,7 +50,6 @@ export default function Navbar() {
         />
       </motion.a>
 
-      {/* Desktop Links */}
       {!isMobile && (
         <div style={{ display: "flex", gap: "2.5rem" }}>
           {navLinks.map((link) => (
@@ -86,7 +81,6 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* CTA */}
       {!isMobile && (
         <motion.a
           href="#contact"
@@ -108,7 +102,6 @@ export default function Navbar() {
         </motion.a>
       )}
 
-      {/* Mobile toggle */}
       {isMobile && (
         <button
           onClick={() => setMenuOpen(!menuOpen)}
@@ -118,7 +111,6 @@ export default function Navbar() {
         </button>
       )}
 
-      {/* Mobile menu */}
       {isMobile && menuOpen && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
