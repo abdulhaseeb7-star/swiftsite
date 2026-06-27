@@ -2,15 +2,7 @@
 
 import { motion } from "framer-motion";
 
-interface Service {
-  number: string;
-  icon: string;
-  title: string;
-  description: string;
-  image: string;
-}
-
-const services: Service[] = [
+const services = [
   {
     number: "01",
     icon: "</>",
@@ -56,9 +48,46 @@ export default function Services() {
       position: "relative",
       overflow: "hidden",
     }}>
+      <style>{`
+        .services-section {
+          padding: 6rem 4rem;
+        }
+        .services-grid-3 {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          border: 1px solid rgba(0,0,0,0.08);
+        }
+        .services-grid-2 {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          border: 1px solid rgba(0,0,0,0.08);
+          border-top: none;
+          max-width: 66.66%;
+          margin: 0 auto;
+        }
+        .services-watermark {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .services-section {
+            padding: 4rem 1.5rem !important;
+          }
+          .services-grid-3 {
+            grid-template-columns: 1fr;
+          }
+          .services-grid-2 {
+            grid-template-columns: 1fr;
+            max-width: 100%;
+            border-top: 1px solid rgba(0,0,0,0.08);
+          }
+          .services-watermark {
+            display: none;
+          }
+        }
+      `}</style>
 
       {/* SS Watermark top right */}
-      <div style={{
+      <div className="services-watermark" style={{
         position: "absolute",
         top: "2rem",
         right: "3rem",
@@ -128,13 +157,7 @@ export default function Services() {
       </div>
 
       {/* Cards — first row: 3 */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: "0",
-        border: "1px solid rgba(0,0,0,0.08)",
-        marginBottom: "0",
-      }}>
+      <div className="services-grid-3">
         {services.slice(0, 3).map((service, i) => (
           <motion.div
             key={service.number}
@@ -144,11 +167,11 @@ export default function Services() {
             transition={{ duration: 0.6, delay: i * 0.1 }}
             style={{
               borderRight: i < 2 ? "1px solid rgba(0,0,0,0.08)" : "none",
+              borderBottom: "1px solid rgba(0,0,0,0.08)",
               display: "flex",
               flexDirection: "column",
             }}
           >
-            {/* Icon circle */}
             <div style={{ display: "flex", justifyContent: "center", marginTop: "-1.25rem" }}>
               <div style={{
                 width: "48px",
@@ -166,7 +189,6 @@ export default function Services() {
               </div>
             </div>
 
-            {/* Content */}
             <div style={{ padding: "1.5rem 1.75rem 2rem" }}>
               <div style={{
                 fontFamily: "Cormorant Garamond, serif",
@@ -215,7 +237,6 @@ export default function Services() {
               </a>
             </div>
 
-            {/* Bottom image */}
             <div style={{
               height: "200px",
               backgroundImage: `url('${service.image}')`,
@@ -227,16 +248,8 @@ export default function Services() {
         ))}
       </div>
 
-      {/* Cards — second row: 2 centered */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gap: "0",
-        border: "1px solid rgba(0,0,0,0.08)",
-        borderTop: "none",
-        maxWidth: "66.66%",
-        margin: "0 auto",
-      }}>
+      {/* Cards — second row: 2 */}
+      <div className="services-grid-2">
         {services.slice(3).map((service, i) => (
           <motion.div
             key={service.number}
