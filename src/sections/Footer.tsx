@@ -8,15 +8,77 @@ export default function Footer() {
 
   return (
     <footer>
+      <style>{`
+        .footer-cta {
+          padding: 5rem 4rem;
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          align-items: center;
+          gap: 2rem;
+        }
+        .footer-cta-right {
+          display: flex;
+          justify-content: center;
+        }
+        .footer-cta-photo {
+          display: block;
+        }
+        .footer-grid {
+          padding: 4rem;
+          display: grid;
+          grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
+          gap: 2rem;
+        }
+        .footer-watermark {
+          display: block;
+        }
+        .footer-built-bar {
+          padding: 2rem 4rem;
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          align-items: center;
+        }
+        .footer-copyright {
+          padding: 1.25rem 4rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        @media (max-width: 768px) {
+          .footer-cta {
+            padding: 4rem 1.5rem;
+            grid-template-columns: 1fr;
+            text-align: center;
+          }
+          .footer-cta-right {
+            justify-content: center;
+          }
+          .footer-cta-photo {
+            display: none;
+          }
+          .footer-grid {
+            padding: 3rem 1.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+          }
+          .footer-watermark {
+            display: none;
+          }
+          .footer-built-bar {
+            padding: 2rem 1.5rem;
+          }
+          .footer-copyright {
+            padding: 1.25rem 1.5rem;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: center;
+          }
+        }
+      `}</style>
 
       {/* CTA Banner */}
-      <div style={{
+      <div className="footer-cta" style={{
         backgroundColor: "#F0EDE8",
-        padding: "5rem 4rem",
-        display: "grid",
-        gridTemplateColumns: "1fr auto 1fr",
-        alignItems: "center",
-        gap: "2rem",
         borderTop: "1px solid rgba(0,0,0,0.08)",
         position: "relative",
         overflow: "hidden",
@@ -35,7 +97,7 @@ export default function Footer() {
             color: "#888",
             marginBottom: "1.25rem",
           }}>
-            Let&apos;s Build Something Exceptional
+            Let's Build Something Exceptional
           </p>
           <h2 style={{
             fontFamily: "Cormorant Garamond, serif",
@@ -45,11 +107,11 @@ export default function Footer() {
             color: "#1a1a1a",
           }}>
             Have a project in mind?<br />
-            Let&apos;s bring <em style={{ fontStyle: "italic" }}>your vision</em> to life.
+            Let's bring <em style={{ fontStyle: "italic" }}>your vision</em> to life.
           </h2>
         </motion.div>
 
-        {/* Center vertical line with dot */}
+        {/* Center vertical line */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -68,15 +130,13 @@ export default function Footer() {
         </motion.div>
 
         {/* Right CTA */}
-          <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          style={{ display: "flex", justifyContent: "center" }}
-        >
-          
-            <a href="#contact"
+        <div className="footer-cta-right">
+          <motion.a
+            href="#contact"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -93,11 +153,11 @@ export default function Footer() {
             onMouseLeave={e => e.currentTarget.style.borderBottomColor = "rgba(0,0,0,0.2)"}
           >
             Start Your Project ↗
-          </a>
-        </motion.div>
+          </motion.a>
+        </div>
 
         {/* Right photo */}
-        <div style={{
+        <div className="footer-cta-photo" style={{
           position: "absolute",
           right: 0,
           top: 0,
@@ -116,19 +176,15 @@ export default function Footer() {
       </div>
 
       {/* Footer grid */}
-      <div style={{
+      <div className="footer-grid" style={{
         backgroundColor: "#E8E4DC",
-        padding: "4rem",
-        display: "grid",
-        gridTemplateColumns: "1.5fr 1fr 1fr 1fr 1.5fr",
-        gap: "2rem",
         borderTop: "1px solid rgba(0,0,0,0.08)",
         position: "relative",
         overflow: "hidden",
       }}>
 
-        {/* SS Watermark right */}
-        <div style={{
+        {/* SS Watermark */}
+        <div className="footer-watermark" style={{
           position: "absolute",
           right: "2rem",
           top: "50%",
@@ -259,8 +315,8 @@ export default function Footer() {
             Information
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
-            {["FAQs", "Process", "Pricing", "Terms & Conditions", "Privacy Policy"].map((i) => (
-              <a key={i} href="#" style={{
+            {["FAQs", "Process", "Pricing", "Terms & Conditions", "Privacy Policy"].map((item) => (
+              <a key={item} href="#" style={{
                 fontSize: "0.7rem",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
@@ -270,7 +326,7 @@ export default function Footer() {
                 onMouseEnter={e => e.currentTarget.style.color = "#1a1a1a"}
                 onMouseLeave={e => e.currentTarget.style.color = "#555"}
               >
-                {i}
+                {item}
               </a>
             ))}
           </div>
@@ -339,19 +395,14 @@ export default function Footer() {
       </div>
 
       {/* Built Fast | Built Right bar */}
-      <div style={{
+      <div className="footer-built-bar" style={{
         backgroundColor: "#E8E4DC",
         borderTop: "1px solid rgba(0,0,0,0.08)",
-        padding: "2rem 4rem",
-        display: "grid",
-        gridTemplateColumns: "1fr auto 1fr",
-        alignItems: "center",
       }}>
         <span style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#999" }}>
           Built Fast
         </span>
 
-        {/* Center logo circle */}
         <div style={{
           display: "flex",
           flexDirection: "column",
@@ -385,13 +436,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright bar */}
-      <div style={{
-        backgroundColor: "#1a1a1a",
-        padding: "1.25rem 4rem",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}>
+      <div className="footer-copyright" style={{ backgroundColor: "#1a1a1a" }}>
         <p style={{
           fontSize: "0.6rem",
           letterSpacing: "0.15em",

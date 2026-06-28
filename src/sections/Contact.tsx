@@ -22,13 +22,28 @@ export default function Contact() {
       position: "relative",
       overflow: "hidden",
     }}>
+      <style>{`
+        .contact-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 4rem;
+          align-items: start;
+        }
+        .contact-right {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .contact-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+          }
+          .contact-right {
+            display: none;
+          }
+        }
+      `}</style>
 
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
-        gap: "4rem",
-        alignItems: "start",
-      }}>
+      <div className="contact-grid">
 
         {/* Left — Info */}
         <motion.div
@@ -176,7 +191,6 @@ export default function Contact() {
             </div>
           ))}
 
-          {/* Message */}
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
             <label style={{
               fontSize: "0.6rem",
@@ -207,7 +221,6 @@ export default function Contact() {
             />
           </div>
 
-          {/* Submit */}
           <motion.button
             whileHover={{ backgroundColor: "#333" }}
             whileTap={{ scale: 0.98 }}
@@ -233,13 +246,13 @@ export default function Contact() {
 
         {/* Right — SS watermark + photo */}
         <motion.div
+          className="contact-right"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
           style={{ position: "relative", minHeight: "500px" }}
         >
-          {/* SS Watermark */}
           <div style={{ opacity: 0.15, marginBottom: "2rem" }}>
             <img
               src="/logo.png"
@@ -252,7 +265,6 @@ export default function Contact() {
             />
           </div>
 
-          {/* Photo */}
           <div style={{
             position: "absolute",
             right: "-4rem",
