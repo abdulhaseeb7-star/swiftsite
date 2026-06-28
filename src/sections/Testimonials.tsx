@@ -39,15 +39,59 @@ export default function Testimonials() {
       position: "relative",
       overflow: "hidden",
     }}>
+      <style>{`
+        .testimonials-top {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          padding: 0 4rem;
+          margin-bottom: 4rem;
+          gap: 2rem;
+        }
+        .testimonials-right-col {
+          display: block;
+        }
+        .testimonials-cards-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+          width: 100%;
+        }
+        .testimonials-card-side {
+          display: block;
+        }
+        .clients-list {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 2rem;
+          flex-wrap: nowrap;
+        }
+        @media (max-width: 768px) {
+          .testimonials-top {
+            grid-template-columns: 1fr;
+            padding: 0 1.5rem;
+            margin-bottom: 2rem;
+          }
+          .testimonials-right-col {
+            display: none;
+          }
+          .testimonials-cards-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+          .testimonials-card-side {
+            display: none;
+          }
+          .clients-list {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+          }
+        }
+      `}</style>
 
       {/* Top area */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        padding: "0 4rem",
-        marginBottom: "4rem",
-        gap: "2rem",
-      }}>
+      <div className="testimonials-top">
         {/* Left text */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -56,7 +100,6 @@ export default function Testimonials() {
           transition={{ duration: 0.8 }}
           style={{ position: "relative", paddingLeft: "1.5rem" }}
         >
-          {/* Vertical line */}
           <div style={{
             position: "absolute",
             left: 0,
@@ -118,7 +161,8 @@ export default function Testimonials() {
             We build lasting partnerships through clear communication, reliable execution, and exceptional outcomes.
           </p>
 
-          <a
+          
+<a
             href="#contact"
             style={{
               display: "inline-flex",
@@ -138,7 +182,7 @@ export default function Testimonials() {
         </motion.div>
 
         {/* Right SS watermark + photo */}
-        <div style={{ position: "relative", minHeight: "300px" }}>
+        <div className="testimonials-right-col" style={{ position: "relative", minHeight: "300px" }}>
           <div style={{ opacity: 0.15, position: "absolute", right: "4rem", top: 0 }}>
             <img
               src="/logo.png"
@@ -186,6 +230,7 @@ export default function Testimonials() {
         {/* Left arrow */}
         <button
           onClick={prev}
+          className="testimonials-card-side"
           style={{
             position: "absolute",
             left: "1rem",
@@ -207,12 +252,7 @@ export default function Testimonials() {
         </button>
 
         {/* Cards */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "1.5rem",
-          width: "100%",
-        }}>
+        <div className="testimonials-cards-grid" style={{ padding: "0 0.5rem" }}>
           {testimonials.map((t, i) => {
             const isActive = i === active;
             return (
@@ -233,7 +273,6 @@ export default function Testimonials() {
                   transition: "background-color 0.3s",
                 }}
               >
-                {/* Avatar for active */}
                 {isActive && t.avatar && (
                   <div style={{
                     position: "absolute",
@@ -250,7 +289,6 @@ export default function Testimonials() {
                   </div>
                 )}
 
-                {/* Quote mark */}
                 <div style={{
                   fontFamily: "Cormorant Garamond, serif",
                   fontSize: "2rem",
@@ -259,7 +297,7 @@ export default function Testimonials() {
                   marginBottom: "1rem",
                   marginTop: isActive && t.avatar ? "1.5rem" : "0",
                 }}>
-                  &ldquo;
+                  &quot;
                 </div>
 
                 <p style={{
@@ -296,7 +334,6 @@ export default function Testimonials() {
                   {t.role}
                 </p>
 
-                {/* Arrow button on active */}
                 {isActive && (
                   <button
                     onClick={next}
@@ -328,6 +365,7 @@ export default function Testimonials() {
         {/* Right arrow */}
         <button
           onClick={next}
+          className="testimonials-card-side"
           style={{
             position: "absolute",
             right: "1rem",
@@ -365,12 +403,7 @@ export default function Testimonials() {
         }}>
           Trusted By
         </p>
-        <div style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "2rem",
-        }}>
+        <div className="clients-list">
           {clients.map((client, i) => (
             <motion.p
               key={client}
