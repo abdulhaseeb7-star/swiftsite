@@ -76,17 +76,72 @@ export default function Work() {
       position: "relative",
       overflow: "hidden",
     }}>
+      <style>{`
+        .work-top {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          padding: 0 4rem;
+          margin-bottom: 3rem;
+          gap: 2rem;
+        }
+        .work-center {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0.12;
+        }
+        .work-right {
+          display: block;
+          position: relative;
+          min-height: 320px;
+        }
+        .work-filter {
+          padding: 0 4rem;
+          border-bottom: 1px solid rgba(0,0,0,0.08);
+          overflow-x: auto;
+        }
+        .work-filter-inner {
+          display: flex;
+          gap: 2.5rem;
+          min-width: max-content;
+        }
+        .work-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .work-built {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 3rem;
+          padding: 2.5rem 0;
+          border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        @media (max-width: 768px) {
+          .work-top {
+            grid-template-columns: 1fr;
+            padding: 0 1.5rem;
+            margin-bottom: 2rem;
+          }
+          .work-center {
+            display: none;
+          }
+          .work-right {
+            display: none;
+          }
+          .work-filter {
+            padding: 0 1.5rem;
+          }
+          .work-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
 
-      {/* Top area: 3 columns */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
-        padding: "0 4rem",
-        marginBottom: "3rem",
-        gap: "2rem",
-      }}>
+      {/* Top area */}
+      <div className="work-top">
 
-        {/* Left — Text */}
+        {/* Left text */}
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -162,12 +217,7 @@ export default function Work() {
         </div>
 
         {/* Center — SS Watermark */}
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: 0.12,
-        }}>
+        <div className="work-center">
           <img
             src="/logo.png"
             alt=""
@@ -181,16 +231,16 @@ export default function Work() {
 
         {/* Right — Interior photo */}
         <motion.div
+          className="work-right"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
-          style={{ position: "relative", minHeight: "320px" }}
         >
           <div style={{
             width: "100%",
             height: "100%",
-            backgroundImage: `url('https://images.unsplash.com/photo-1567016432779-094069958ea5?w=600&q=80')`,
+            backgroundImage: `url('/work.jpg')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             borderRadius: "2px",
@@ -209,13 +259,8 @@ export default function Work() {
       </div>
 
       {/* Filter tabs */}
-      <div style={{
-        padding: "0 1.5rem",
-        borderBottom: "1px solid rgba(0,0,0,0.08)",
-        marginBottom: "0",
-        overflowX: "auto",
-      }}>
-        <div style={{ display: "flex", gap: "1.5rem", minWidth: "max-content" }}>
+      <div className="work-filter">
+        <div className="work-filter-inner">
           {filters.map((filter) => (
             <button
               key={filter}
@@ -231,6 +276,7 @@ export default function Work() {
                 paddingBottom: "1rem",
                 borderBottom: activeFilter === filter ? "1px solid #1a1a1a" : "1px solid transparent",
                 transition: "all 0.2s",
+                whiteSpace: "nowrap",
               }}
             >
               {filter}
@@ -240,10 +286,7 @@ export default function Work() {
       </div>
 
       {/* Project Grid */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-      }}>
+      <div className="work-grid">
         {filtered.map((project, i) => (
           <motion.div
             key={project.number}
@@ -261,7 +304,6 @@ export default function Work() {
               backgroundColor: project.dark ? "#2a2a2a" : "#E8E4DC",
             }}
           >
-            {/* Background image */}
             <div style={{
               position: "absolute",
               inset: 0,
@@ -269,10 +311,8 @@ export default function Work() {
               backgroundSize: "cover",
               backgroundPosition: "center",
               opacity: 0.5,
-              transition: "transform 0.5s ease, opacity 0.3s ease",
             }} />
 
-            {/* Overlay */}
             <div style={{
               position: "absolute",
               inset: 0,
@@ -281,7 +321,6 @@ export default function Work() {
                 : "linear-gradient(to top, rgba(240,237,232,0.9) 0%, rgba(240,237,232,0.2) 100%)",
             }} />
 
-            {/* Content */}
             <div style={{
               position: "absolute",
               inset: 0,
@@ -290,7 +329,6 @@ export default function Work() {
               flexDirection: "column",
               justifyContent: "space-between",
             }}>
-              {/* Top */}
               <div style={{
                 fontSize: "0.75rem",
                 fontFamily: "Cormorant Garamond, serif",
@@ -299,7 +337,6 @@ export default function Work() {
                 {project.number}
               </div>
 
-              {/* Bottom */}
               <div>
                 <h3 style={{
                   fontFamily: "Cormorant Garamond, serif",
@@ -321,7 +358,6 @@ export default function Work() {
                 }}>
                   {project.category}
                 </p>
-                
                 <a
                   href={project.link}
                   style={{
@@ -344,27 +380,14 @@ export default function Work() {
       </div>
 
       {/* Built Fast | Built Right */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "3rem",
-          padding: "2.5rem 0",
-          borderTop: "1px solid rgba(0,0,0,0.06)",
-        }}
-      >
+      <div className="work-built">
         <span style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#999" }}>Built Fast</span>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
           <div style={{ width: "1px", height: "30px", backgroundColor: "#999" }} />
           <div style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: "#999" }} />
         </div>
         <span style={{ fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#999" }}>Built Right</span>
-      </motion.div>
+      </div>
 
     </section>
   );

@@ -16,33 +16,45 @@ export default function Hero() {
           grid-template-columns: 1fr 1fr 1fr;
           min-height: 100vh;
         }
-        .hero-right {
-          display: block;
-        }
         .hero-center {
           display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          padding: 6rem 0;
+        }
+        .hero-right {
+          position: relative;
+        }
+        .hero-left {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 8rem 3rem 4rem 4rem;
         }
         @media (max-width: 768px) {
           .hero-grid {
             grid-template-columns: 1fr;
+            min-height: auto;
+          }
+          .hero-center {
+            display: none;
           }
           .hero-right {
             display: none;
           }
-          .hero-center {
-            display: none;
+          .hero-left {
+            padding: 7rem 1.5rem 4rem;
+            min-height: 100vh;
           }
         }
       `}</style>
 
       <div className="hero-grid">
+
         {/* Left — Text */}
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "8rem 3rem 4rem 4rem",
-        }}>
+        <div className="hero-left">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -85,45 +97,105 @@ export default function Hero() {
               color: "#666",
               lineHeight: 1.8,
               marginBottom: "2.5rem",
-              maxWidth: "280px",
+              maxWidth: "320px",
             }}
           >
             We design and build high-performing websites that elevate brands and drive real results.
           </motion.p>
 
-          <motion.a
-            href="#work"
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.45 }}
-            whileHover={{ backgroundColor: "#333" }}
+            style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "flex-start" }}
+          >
+            <motion.a
+              href="#work"
+              whileHover={{ backgroundColor: "#333" }}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.75rem",
+                padding: "1rem 1.75rem",
+                backgroundColor: "#1a1a1a",
+                color: "#F0EDE8",
+                fontSize: "0.65rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                width: "fit-content",
+              }}
+            >
+              Explore Our Work
+              <span style={{ fontSize: "1rem" }}>↗</span>
+            </motion.a>
+
+            <motion.a
+              href="#contact"
+              whileHover={{ borderColor: "#1a1a1a" }}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.75rem",
+                padding: "1rem 1.75rem",
+                border: "1px solid rgba(0,0,0,0.2)",
+                color: "#1a1a1a",
+                fontSize: "0.65rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                width: "fit-content",
+              }}
+            >
+              Get a Free Quote ↗
+            </motion.a>
+          </motion.div>
+
+          {/* Stats — show on mobile too */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.7 }}
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.75rem",
-              padding: "1rem 1.75rem",
-              backgroundColor: "#1a1a1a",
-              color: "#F0EDE8",
-              fontSize: "0.65rem",
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              textDecoration: "none",
-              width: "fit-content",
+              marginTop: "3rem",
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "1rem",
+              borderTop: "1px solid rgba(0,0,0,0.08)",
+              paddingTop: "2rem",
             }}
           >
-            Explore Our Work
-            <span style={{ fontSize: "1rem" }}>↗</span>
-          </motion.a>
+            {[
+              { value: "50+", label: "Sites Delivered" },
+              { value: "100%", label: "Satisfaction" },
+              { value: "7 Days", label: "Avg. Delivery" },
+            ].map((stat) => (
+              <div key={stat.label} style={{ textAlign: "center" }}>
+                <div style={{
+                  fontFamily: "Cormorant Garamond, serif",
+                  fontSize: "1.75rem",
+                  fontWeight: 300,
+                  color: "#1a1a1a",
+                  lineHeight: 1,
+                }}>
+                  {stat.value}
+                </div>
+                <div style={{
+                  fontSize: "0.55rem",
+                  color: "rgba(0,0,0,0.4)",
+                  marginTop: "0.375rem",
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                }}>
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
         </div>
 
         {/* Center — Logo */}
-        <div className="hero-center" style={{
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
-          padding: "6rem 0",
-        }}>
+        <div className="hero-center">
           <motion.img
             src="/logo.png"
             alt="Swift Sites"
@@ -185,13 +257,7 @@ export default function Hero() {
         </div>
 
         {/* Right — Interior photo */}
-        <motion.div
-          className="hero-right"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          style={{ position: "relative" }}
-        >
+        <div className="hero-right">
           <div style={{
             width: "100%",
             height: "100%",
@@ -214,7 +280,7 @@ export default function Hero() {
             inset: 0,
             background: "linear-gradient(to top, #F0EDE8 0%, transparent 20%)",
           }} />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
