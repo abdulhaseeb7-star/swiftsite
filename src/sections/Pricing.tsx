@@ -74,9 +74,40 @@ export default function Pricing() {
       position: "relative",
       overflow: "hidden",
     }}>
+      <style>{`
+        .pricing-section { padding: 6rem 4rem; }
+        .pricing-layout {
+          display: grid;
+          grid-template-columns: 1fr 3fr 1fr;
+          gap: 2rem;
+          align-items: center;
+        }
+        .pricing-cards {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0;
+          align-items: end;
+        }
+        .pricing-side-left { display: flex; }
+        .pricing-side-right { display: flex; }
+        .pricing-watermark { display: block; }
+        @media (max-width: 768px) {
+          .pricing-section { padding: 4rem 1.5rem !important; }
+          .pricing-layout {
+            grid-template-columns: 1fr;
+          }
+          .pricing-cards {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+          .pricing-side-left { display: none; }
+          .pricing-side-right { display: none; }
+          .pricing-watermark { display: none; }
+        }
+      `}</style>
 
-      {/* SS Watermark top right */}
-      <div style={{
+      {/* SS Watermark */}
+      <div className="pricing-watermark" style={{
         position: "absolute",
         top: "2rem",
         right: "3rem",
@@ -145,16 +176,10 @@ export default function Pricing() {
       </div>
 
       {/* Main layout */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 3fr 1fr",
-        gap: "2rem",
-        alignItems: "center",
-      }}>
+      <div className="pricing-layout">
 
         {/* Left side quote */}
-        <div style={{
-          display: "flex",
+        <div className="pricing-side-left" style={{
           flexDirection: "column",
           gap: "2rem",
           alignItems: "flex-start",
@@ -176,12 +201,11 @@ export default function Pricing() {
               color: "#1a1a1a",
               lineHeight: 1.6,
             }}>
-              Great websites aren&apos;t just built. They&apos;re{" "}
+              Great websites aren't just built. They're{" "}
               <em style={{ fontStyle: "italic" }}>crafted</em> with purpose.
             </p>
           </motion.div>
 
-          {/* Small logo circle */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -206,12 +230,7 @@ export default function Pricing() {
         </div>
 
         {/* Cards */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "0",
-          alignItems: "end",
-        }}>
+        <div className="pricing-cards">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -235,9 +254,9 @@ export default function Pricing() {
                 boxShadow: hovered === i
                   ? "0 20px 60px rgba(0,0,0,0.2)"
                   : plan.dark ? "0 8px 30px rgba(0,0,0,0.15)" : "none",
+                marginBottom: "1rem",
               }}
             >
-              {/* Most Popular badge */}
               {plan.popular && (
                 <div style={{
                   position: "absolute",
@@ -256,7 +275,6 @@ export default function Pricing() {
                 </div>
               )}
 
-              {/* Plan name */}
               <p style={{
                 fontSize: "0.65rem",
                 letterSpacing: "0.2em",
@@ -285,7 +303,6 @@ export default function Pricing() {
                 marginBottom: "1.5rem",
               }} />
 
-              {/* Price */}
               <div style={{
                 display: "flex",
                 alignItems: "baseline",
@@ -305,7 +322,6 @@ export default function Pricing() {
                 </span>
               </div>
 
-              {/* Features */}
               <div style={{ marginBottom: "1.5rem", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                 {plan.features.map((f) => (
                   <div key={f} style={{ display: "flex", alignItems: "center", gap: "0.6rem", fontSize: "0.78rem", opacity: 0.8 }}>
@@ -323,7 +339,6 @@ export default function Pricing() {
                 marginBottom: "1rem",
               }} />
 
-              {/* Timeline */}
               <p style={{
                 fontSize: "0.55rem",
                 letterSpacing: "0.18em",
@@ -335,8 +350,7 @@ export default function Pricing() {
                 <span style={{ opacity: 0.7 }}>Timeline</span>
               </p>
 
-              {/* CTA */}
-              <a
+              
                 href="#contact"
                 style={{
                   display: "flex",
@@ -360,8 +374,7 @@ export default function Pricing() {
         </div>
 
         {/* Right side features */}
-        <div style={{
-          display: "flex",
+        <div className="pricing-side-right" style={{
           flexDirection: "column",
           gap: "2rem",
         }}>
