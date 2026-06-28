@@ -201,7 +201,7 @@ export default function Pricing() {
               color: "#1a1a1a",
               lineHeight: 1.6,
             }}>
-              Great websites aren't just built. They're{" "}
+              Great websites aren&apos;t just built. They&apos;re{" "}
               <em style={{ fontStyle: "italic" }}>crafted</em> with purpose.
             </p>
           </motion.div>
@@ -350,7 +350,7 @@ export default function Pricing() {
                 <span style={{ opacity: 0.7 }}>Timeline</span>
               </p>
 
-              
+              <a
                 href="#contact"
                 style={{
                   display: "flex",
