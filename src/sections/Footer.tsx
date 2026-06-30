@@ -97,7 +97,7 @@ export default function Footer() {
             color: "#888",
             marginBottom: "1.25rem",
           }}>
-            Let's Build Something Exceptional
+            Let&apos;s Build Something Exceptional
           </p>
           <h2 style={{
             fontFamily: "Cormorant Garamond, serif",
@@ -107,7 +107,7 @@ export default function Footer() {
             color: "#1a1a1a",
           }}>
             Have a project in mind?<br />
-            Let's bring <em style={{ fontStyle: "italic" }}>your vision</em> to life.
+            Let&apos;s bring <em style={{ fontStyle: "italic" }}>your vision</em> to life.
           </h2>
         </motion.div>
 
