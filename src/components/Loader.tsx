@@ -30,9 +30,9 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            padding: "0 1.5rem",
           }}
         >
-          {/* Logo */}
           <motion.img
             src="/logo.png"
             alt="SwiftSite"
@@ -40,13 +40,13 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             style={{
-              width: "180px",
+              width: "140px",
+              maxWidth: "60%",
               filter: "brightness(0)",
               marginBottom: "2rem",
             }}
           />
 
-          {/* Tagline */}
           <AnimatePresence>
             {phase === "text" && (
               <motion.div
@@ -59,20 +59,20 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
                   alignItems: "center",
                   gap: "1rem",
                   color: "rgba(0,0,0,0.4)",
-                  fontSize: "0.65rem",
-                  letterSpacing: "0.3em",
+                  fontSize: "0.6rem",
+                  letterSpacing: "0.25em",
                   textTransform: "uppercase",
                   fontFamily: "Cormorant Garamond, serif",
+                  textAlign: "center",
                 }}
               >
-                <span style={{ width: "30px", height: "1px", backgroundColor: "rgba(0,0,0,0.2)", display: "inline-block" }} />
+                <span style={{ width: "24px", height: "1px", backgroundColor: "rgba(0,0,0,0.2)", display: "inline-block" }} />
                 Built Fast. Built Right.
-                <span style={{ width: "30px", height: "1px", backgroundColor: "rgba(0,0,0,0.2)", display: "inline-block" }} />
+                <span style={{ width: "24px", height: "1px", backgroundColor: "rgba(0,0,0,0.2)", display: "inline-block" }} />
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Loading bar */}
           <motion.div
             style={{
               position: "absolute",
