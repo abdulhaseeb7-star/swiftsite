@@ -228,8 +228,12 @@ export default function Footer() {
             Follow Us
           </p>
           <div style={{ display: "flex", gap: "1.25rem" }}>
-            {["Instagram", "LinkedIn", "Fiverr"].map((s) => (
-              <a key={s} href="#" style={{
+            {[
+              { name: "Instagram", url: "https://www.instagram.com/swiftsites.official/" },
+              { name: "LinkedIn", url: "https://www.linkedin.com/in/swift-sites-99845841a" },
+              { name: "Fiverr", url: "https://www.fiverr.com/users/official__s" },
+            ].map((s) => (
+              <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" style={{
                 fontSize: "0.6rem",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
@@ -239,7 +243,7 @@ export default function Footer() {
                 onMouseEnter={e => e.currentTarget.style.color = "#1a1a1a"}
                 onMouseLeave={e => e.currentTarget.style.color = "#555"}
               >
-                {s}
+                {s.name}
               </a>
             ))}
           </div>

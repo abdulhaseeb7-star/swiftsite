@@ -5,12 +5,16 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "hello@swiftsites.com" },
-  { icon: Phone, label: "Phone", value: "+92 300 0000000" },
+  { icon: Mail, label: "Email", value: "swiftsites.tech@gmail.com" },
+  { icon: Phone, label: "Phone", value: "+92 328 1240807" },
   { icon: MapPin, label: "Location", value: "Remote Worldwide" },
 ];
 
-const socials = ["Instagram", "LinkedIn", "Fiverr"];
+const socials = [
+  { name: "Instagram", url: "https://www.instagram.com/swiftsites.official/" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/swift-sites-99845841a" },
+  { name: "Fiverr", url: "https://www.fiverr.com/users/official__s" },
+];
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
@@ -131,8 +135,10 @@ export default function Contact() {
           <div style={{ display: "flex", gap: "1.5rem" }}>
             {socials.map((s) => (
               <a
-                key={s}
-                href="#"
+                key={s.name}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   fontSize: "0.65rem",
                   letterSpacing: "0.12em",
@@ -140,10 +146,10 @@ export default function Contact() {
                   color: "#555",
                   textDecoration: "none",
                 }}
-                onMouseEnter={e => e.currentTarget.style.color = "#1a1a1a"}
-                onMouseLeave={e => e.currentTarget.style.color = "#555"}
+                onMouseEnter={e => (e.currentTarget.style.color = "#1a1a1a")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#555")}
               >
-                {s}
+                {s.name}
               </a>
             ))}
           </div>
