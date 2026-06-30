@@ -13,7 +13,7 @@ const projects = [
     description: "Fast food ordering website with full menu,cart system with payment integration.",
     image: "/work/quickbite.jpg",
     dark: false,
-    link: "/work/quickbite",
+    link: "https://fastfood-website-five.vercel.app/",
   },
   {
     number: "02",
@@ -22,7 +22,7 @@ const projects = [
     description: "Elegant nail design brand website with animations.",
     image: "/work/nailaura.jpg",
     dark: true,
-    link: "/work/nailaura",
+    link: "https://nailaura-pk.vercel.app/",
   },
   {
     number: "03",
@@ -31,7 +31,7 @@ const projects = [
     description: "AI-powered customer support bot for restaurants.",
     image: "/work/PAFI.jpeg",
     dark: true,
-    link: "/src/app/work/[slug]/page.tsx",
+    link: "https://paf-iast-bot.vercel.app/",
   },
   {
     number: "04",
