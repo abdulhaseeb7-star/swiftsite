@@ -9,57 +9,40 @@ const projects = [
   {
     number: "01",
     title: "QuickBite",
-    category: "Restaurant",
-    description: "Fast food ordering website with full menu and cart system.",
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80",
+    category: ["Restaurant", "E-Commerce", "Business"],
+    description: "Fast food ordering website with full menu,cart system with payment integration.",
+    image: "/public/work/quickbite.jpg",
     dark: false,
-    link: "#",
+    link: "https://fastfood-website-five.vercel.app/",
   },
   {
     number: "02",
     title: "NailAura",
-    category: "Business",
+    category: ["Business","E-Commerce"],
     description: "Elegant nail design brand website with animations.",
-    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80",
+    image: "/public/work/nailaura.jpg",
     dark: true,
-    link: "#",
+    link: "https://nailaura-pk.vercel.app/",
   },
   {
     number: "03",
-    title: "SwiftStore",
-    category: "E-Commerce",
-    description: "Modern e-commerce store with seamless checkout experience.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80",
-    dark: false,
-    link: "#",
+    title: "PAFI",
+    category: ["Bot","Business"],
+    description: "AI-powered customer support bot for restaurants.",
+    image: "/public/work/PAFI.jpeg",
+    dark: true,
+    link: "https://paf-iast-bot.vercel.app/",
   },
   {
     number: "04",
-    title: "ChatBot Pro",
-    category: "Bot",
-    description: "AI-powered customer support bot for restaurants.",
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&q=80",
+    title: "Comming soon",
+    category: ["Business","E-Commerce"],
+    description: "Ecommerce store for a protein seller.",
+    image: "/public/work/coming soon.avif",
     dark: true,
     link: "#",
   },
-  {
-    number: "05",
-    title: "Bloom Clinic",
-    category: "Business",
-    description: "Clean, professional website for a health & wellness brand.",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80",
-    dark: false,
-    link: "#",
-  },
-  {
-    number: "06",
-    title: "GrillHouse",
-    category: "Restaurant",
-    description: "Premium steakhouse website with reservation system.",
-    image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80",
-    dark: true,
-    link: "#",
-  },
+
 ];
 
 export default function Work() {
@@ -67,7 +50,7 @@ export default function Work() {
 
   const filtered = activeFilter === "All"
     ? projects
-    : projects.filter(p => p.category === activeFilter);
+    : projects.filter(p => p.category.includes(activeFilter));
 
   return (
     <section id="work" style={{
