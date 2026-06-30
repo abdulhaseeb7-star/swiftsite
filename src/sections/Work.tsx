@@ -31,7 +31,7 @@ const projects = [
     description: "AI-powered customer support bot for restaurants.",
     image: "/work/PAFI.jpeg",
     dark: true,
-    link: "/work/pafi",
+    link: "/src/app/work/[slug]/page.tsx",
   },
   {
     number: "04",
