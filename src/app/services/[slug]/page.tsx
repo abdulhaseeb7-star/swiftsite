@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 import Footer from "@/sections/Footer";
 
 const services: Record<string, {
@@ -192,22 +192,23 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
             </div>
           </div>
 
-          
-            <Link href="/#contact" style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.75rem",
-                padding: "1rem 1.75rem",
-                backgroundColor: "#1a1a1a",
-                color: "#F0EDE8",
-                fontSize: "0.65rem",
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                textDecoration: "none",
-              }}
-            >
-              Get Started ↗
-            </Link>
+          <Link
+            href="/#contact"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.75rem",
+              padding: "1rem 1.75rem",
+              backgroundColor: "#1a1a1a",
+              color: "#F0EDE8",
+              fontSize: "0.65rem",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+            }}
+          >
+            Get Started ↗
+          </Link>
         </div>
       </main>
       <Footer />
